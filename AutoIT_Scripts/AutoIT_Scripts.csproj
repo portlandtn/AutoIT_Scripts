@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoIT.cs" />
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
     </Compile>

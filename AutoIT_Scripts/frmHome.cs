@@ -12,9 +12,15 @@ namespace AutoIT_Scripts
 {
     public partial class frmHome : Form
     {
+        AutoIT CautoIT = new AutoIT();
         public frmHome()
         {
             InitializeComponent();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            CautoIT.mClick("RIGHT", 1, 1, 1, -1);
         }
     }
 }
