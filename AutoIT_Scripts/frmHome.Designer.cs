@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rdoJobTypeA = new System.Windows.Forms.RadioButton();
+            this.components = new System.ComponentModel.Container();
+            this.rboJobTypeA = new System.Windows.Forms.RadioButton();
             this.rboJobTypeB = new System.Windows.Forms.RadioButton();
             this.rboJobTypeC = new System.Windows.Forms.RadioButton();
             this.rboJobTypeD = new System.Windows.Forms.RadioButton();
@@ -48,22 +49,24 @@
             this.lblCurrentDivision = new System.Windows.Forms.Label();
             this.lblTestOrProdState = new System.Windows.Forms.Label();
             this.lblAutoITTesting = new System.Windows.Forms.Label();
+            this.tmrCheckDivision = new System.Windows.Forms.Timer(this.components);
             this.pnlJobTypes.SuspendLayout();
             this.pnlNumberofPhases.SuspendLayout();
             this.pnlCreateJobOptions.SuspendLayout();
             this.SuspendLayout();
             // 
-            // rdoJobTypeA
+            // rboJobTypeA
             // 
-            this.rdoJobTypeA.AutoSize = true;
-            this.rdoJobTypeA.Checked = true;
-            this.rdoJobTypeA.Location = new System.Drawing.Point(3, 3);
-            this.rdoJobTypeA.Name = "rdoJobTypeA";
-            this.rdoJobTypeA.Size = new System.Drawing.Size(79, 17);
-            this.rdoJobTypeA.TabIndex = 1;
-            this.rdoJobTypeA.TabStop = true;
-            this.rdoJobTypeA.Text = "Job Type A";
-            this.rdoJobTypeA.UseVisualStyleBackColor = true;
+            this.rboJobTypeA.AutoSize = true;
+            this.rboJobTypeA.Checked = true;
+            this.rboJobTypeA.Location = new System.Drawing.Point(3, 3);
+            this.rboJobTypeA.Name = "rboJobTypeA";
+            this.rboJobTypeA.Size = new System.Drawing.Size(79, 17);
+            this.rboJobTypeA.TabIndex = 1;
+            this.rboJobTypeA.TabStop = true;
+            this.rboJobTypeA.Text = "Job Type A";
+            this.rboJobTypeA.UseVisualStyleBackColor = true;
+            this.rboJobTypeA.CheckedChanged += new System.EventHandler(this.rboJobTypeA_CheckedChanged);
             // 
             // rboJobTypeB
             // 
@@ -74,6 +77,7 @@
             this.rboJobTypeB.TabIndex = 2;
             this.rboJobTypeB.Text = "Job Type B";
             this.rboJobTypeB.UseVisualStyleBackColor = true;
+            this.rboJobTypeB.CheckedChanged += new System.EventHandler(this.rboJobTypeB_CheckedChanged);
             // 
             // rboJobTypeC
             // 
@@ -84,6 +88,7 @@
             this.rboJobTypeC.TabIndex = 3;
             this.rboJobTypeC.Text = "Job Type C";
             this.rboJobTypeC.UseVisualStyleBackColor = true;
+            this.rboJobTypeC.CheckedChanged += new System.EventHandler(this.rboJobTypeC_CheckedChanged);
             // 
             // rboJobTypeD
             // 
@@ -94,10 +99,11 @@
             this.rboJobTypeD.TabIndex = 4;
             this.rboJobTypeD.Text = "Job Type D";
             this.rboJobTypeD.UseVisualStyleBackColor = true;
+            this.rboJobTypeD.CheckedChanged += new System.EventHandler(this.rboJobTypeD_CheckedChanged);
             // 
             // pnlJobTypes
             // 
-            this.pnlJobTypes.Controls.Add(this.rdoJobTypeA);
+            this.pnlJobTypes.Controls.Add(this.rboJobTypeA);
             this.pnlJobTypes.Controls.Add(this.rboJobTypeD);
             this.pnlJobTypes.Controls.Add(this.rboJobTypeB);
             this.pnlJobTypes.Controls.Add(this.rboJobTypeC);
@@ -126,6 +132,7 @@
             this.rboOnePhase.TabStop = true;
             this.rboOnePhase.Text = "1 Phase";
             this.rboOnePhase.UseVisualStyleBackColor = true;
+            this.rboOnePhase.CheckedChanged += new System.EventHandler(this.rboOnePhase_CheckedChanged);
             // 
             // rboTwoPhases
             // 
@@ -136,6 +143,7 @@
             this.rboTwoPhases.TabIndex = 8;
             this.rboTwoPhases.Text = "2 Phases";
             this.rboTwoPhases.UseVisualStyleBackColor = true;
+            this.rboTwoPhases.CheckedChanged += new System.EventHandler(this.rboTwoPhases_CheckedChanged);
             // 
             // chkCreateJob
             // 
@@ -148,6 +156,7 @@
             this.chkCreateJob.TabIndex = 7;
             this.chkCreateJob.Text = "Create Job";
             this.chkCreateJob.UseVisualStyleBackColor = true;
+            this.chkCreateJob.CheckedChanged += new System.EventHandler(this.chkCreateJob_CheckedChanged);
             // 
             // chkBookJob
             // 
@@ -160,6 +169,7 @@
             this.chkBookJob.TabIndex = 8;
             this.chkBookJob.Text = "Book Job";
             this.chkBookJob.UseVisualStyleBackColor = true;
+            this.chkBookJob.CheckedChanged += new System.EventHandler(this.chkBookJob_CheckedChanged);
             // 
             // chkCreateCO
             // 
@@ -170,6 +180,7 @@
             this.chkCreateCO.TabIndex = 9;
             this.chkCreateCO.Text = "Create Change Order";
             this.chkCreateCO.UseVisualStyleBackColor = true;
+            this.chkCreateCO.CheckedChanged += new System.EventHandler(this.chkCreateCO_CheckedChanged);
             // 
             // chkInvoiceJob
             // 
@@ -180,6 +191,7 @@
             this.chkInvoiceJob.TabIndex = 10;
             this.chkInvoiceJob.Text = "Invoice Job";
             this.chkInvoiceJob.UseVisualStyleBackColor = true;
+            this.chkInvoiceJob.CheckedChanged += new System.EventHandler(this.chkInvoiceJob_CheckedChanged);
             // 
             // chkRunDailySalesReport
             // 
@@ -190,6 +202,7 @@
             this.chkRunDailySalesReport.TabIndex = 11;
             this.chkRunDailySalesReport.Text = "Run Daily Sales Report";
             this.chkRunDailySalesReport.UseVisualStyleBackColor = true;
+            this.chkRunDailySalesReport.CheckedChanged += new System.EventHandler(this.chkRunDailySalesReport_CheckedChanged);
             // 
             // pnlCreateJobOptions
             // 
@@ -205,6 +218,7 @@
             // 
             // btnSubmit
             // 
+            this.btnSubmit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.Location = new System.Drawing.Point(361, 220);
             this.btnSubmit.Name = "btnSubmit";
@@ -216,6 +230,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(263, 220);
             this.btnCancel.Name = "btnCancel";
@@ -223,9 +238,11 @@
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnReset
             // 
+            this.btnReset.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Location = new System.Drawing.Point(165, 220);
             this.btnReset.Name = "btnReset";
@@ -233,6 +250,7 @@
             this.btnReset.TabIndex = 15;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // lblCurrentDivision
             // 
@@ -262,6 +280,11 @@
             this.lblAutoITTesting.TabIndex = 18;
             this.lblAutoITTesting.Text = "AutoIT Testing Interface";
             // 
+            // tmrCheckDivision
+            // 
+            this.tmrCheckDivision.Enabled = true;
+            this.tmrCheckDivision.Tick += new System.EventHandler(this.wait_Tick);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +302,7 @@
             this.Controls.Add(this.pnlJobTypes);
             this.Name = "frmHome";
             this.Text = "Home";
+            this.Load += new System.EventHandler(this.frmHome_Load);
             this.pnlJobTypes.ResumeLayout(false);
             this.pnlJobTypes.PerformLayout();
             this.pnlNumberofPhases.ResumeLayout(false);
@@ -292,7 +316,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton rdoJobTypeA;
+        private System.Windows.Forms.RadioButton rboJobTypeA;
         private System.Windows.Forms.RadioButton rboJobTypeB;
         private System.Windows.Forms.RadioButton rboJobTypeC;
         private System.Windows.Forms.RadioButton rboJobTypeD;
@@ -312,6 +336,7 @@
         private System.Windows.Forms.Label lblCurrentDivision;
         private System.Windows.Forms.Label lblTestOrProdState;
         private System.Windows.Forms.Label lblAutoITTesting;
+        private System.Windows.Forms.Timer tmrCheckDivision;
     }
 }
 
