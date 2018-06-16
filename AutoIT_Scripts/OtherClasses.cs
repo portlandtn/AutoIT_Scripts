@@ -10,7 +10,7 @@ namespace AutoIT_Scripts
 {
     class OtherClasses
     {
-        AutoIT au3Class = new AutoIT();
+        AutoIT Au3Class = new AutoIT();
         AutoItX3 Au3 = new AutoItX3();
 
         private Timer DivisionCodeTimer;
@@ -24,7 +24,7 @@ namespace AutoIT_Scripts
 
         public void DivisionCodeTimer_Tick(object sender, EventArgs e)
         {
-            au3Class.GetDivision();
+            Au3Class.GetDivision();
         }
 
         private void SetNumberOfPhases(int numberOfPhases)
@@ -41,12 +41,12 @@ namespace AutoIT_Scripts
         {
             Au3.Opt("WinTitleMatchMode", 2);
             string windowTitle = "Order Entry";
-            au3Class.CheckIfWindowExists(windowTitle);
+            Au3Class.CheckIfWindowExists(windowTitle);
 
             string currentJobName = Au3.ControlGetText(windowTitle, "", "[NAME:txtOrderName]");
                       
             
-            au3Class.InputProjectInfo(windowTitle, currentJobName,numberOfPhases);
+            Au3Class.InputProjectInfo(windowTitle, currentJobName,numberOfPhases);
         }
 
 
