@@ -13,11 +13,11 @@ namespace AutoIT_Scripts
 {
     class AutoIT
     {
-        AutoItX3 au3 = new AutoItX3();
+        AutoItX3 Au3 = new AutoItX3();
 
         public void CheckIfWindowExists(string windowTitle)
         {
-            if (au3.WinExists(windowTitle, "") == 0)
+            if (Au3.WinExists(windowTitle, "") == 0)
             {
                 MessageBox.Show("Please open the " + windowTitle + " screen and try to run this script again.");
             }
@@ -25,18 +25,18 @@ namespace AutoIT_Scripts
 
         public void ClickNewJobButton(string windowTitle, string windowTitle2)
         {
-            au3.WinActivate(windowTitle);
-            au3.WinWaitActive(windowTitle);
-            au3.ControlClick(windowTitle, "", "[NAME:btnNewJob]");
-            au3.WinWaitActive(windowTitle2);
-            au3.Sleep(250);
+            Au3.WinActivate(windowTitle);
+            Au3.WinWaitActive(windowTitle);
+            Au3.ControlClick(windowTitle, "", "[NAME:btnNewJob]");
+            Au3.WinWaitActive(windowTitle2);
+            Au3.Sleep(250);
         }
 
         public void CustomerNumber(string windowTitle, string customerNumber)
         {
-            au3.ControlClick(windowTitle, "", "[NAME:txtCustNbr]");
-            au3.ControlSetText(windowTitle, "", "[NAME:txtCustNbr]", customerNumber);
-            au3.Send("{TAB}");
+            Au3.ControlClick(windowTitle, "", "[NAME:txtCustNbr]");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtCustNbr]", customerNumber);
+            Au3.Send("{TAB}");
         }
 
         public void DetermineControlVisibility(string visibleControl, string windowTitle)
@@ -45,15 +45,15 @@ namespace AutoIT_Scripts
 
             while (isvisible == "0")
             {
-                au3.Sleep(250);
-                isvisible = au3.ControlCommand(windowTitle, "", visibleControl, "IsVisible", "");
+                Au3.Sleep(250);
+                isvisible = Au3.ControlCommand(windowTitle, "", visibleControl, "IsVisible", "");
             }
             isvisible = "0";
         }
 
         public string GetCustomerNumber()
         {
-            string Division = au3.WinGetTitle("Order Log");
+            string Division = Au3.WinGetTitle("Order Log");
 
             switch (Division)
             {
@@ -71,7 +71,7 @@ namespace AutoIT_Scripts
                     return "FAC100";
 
                 case "Order Log - Utah":
-                    string DivisionLetter = au3.ControlGetText("New Order Number", "", "[NAME:lblDivision]");
+                    string DivisionLetter = Au3.ControlGetText("New Order Number", "", "[NAME:lblDivision]");
                     if (DivisionLetter == "U")
                         return "FIS200";
                     else return "694998";
@@ -109,15 +109,15 @@ namespace AutoIT_Scripts
             //string format = "m/d/yy";
             string formattedDate = currentDate.ToShortDateString();
 
-            au3.ControlSetText(windowTitle, "", "[NAME:txtOrderName]", currentJobName + ", " + phase + ", " + formattedDate);
-            au3.ControlSetText(windowTitle, "", "[NAME:txtShipAddr1]", "1111 Generic Address");
-            au3.ControlSetText(windowTitle, "", "[NAME:cboShipCity]", "Nashville");
-            au3.ControlSetText(windowTitle, "", "[NAME:txtShipState]", "TN");
-            au3.ControlSetText(windowTitle, "", "[NAME:txtShipZip]", "37217");
-            au3.ControlSetText(windowTitle, "", "[NAME:txtshipcounty]", "Davidson");
-            au3.ControlSetText(windowTitle, "", "[NAME:txtFreightMiles]", "850");
-            au3.ControlSetText(windowTitle, "", "[NAME:txtSqFeet]", "5000");
-            au3.ControlSetText(windowTitle, "", "[NAME:cboDept]", "CSR");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtOrderName]", currentJobName + ", " + phase + "Ph, " + formattedDate);
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtShipAddr1]", "1111 Generic Address");
+            Au3.ControlSetText(windowTitle, "", "[NAME:cboShipCity]", "Nashville");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtShipState]", "TN");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtShipZip]", "37217");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtshipcounty]", "Davidson");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtFreightMiles]", "850");
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtSqFeet]", "5000");
+            Au3.ControlSetText(windowTitle, "", "[NAME:cboDept]", "CSR");
         }
 
         public void SetNewJobName(string windowTitle)
@@ -126,41 +126,41 @@ namespace AutoIT_Scripts
             //string format = "m/d/yy";
             string formattedDate = currentDate.ToShortDateString();
 
-            au3.ControlClick(windowTitle, "", "[NAME:txtOrdName]");
-            au3.ControlSetText(windowTitle, "", "[Name:txtOrdName]", "Test A, C:" + formattedDate);
+            Au3.ControlClick(windowTitle, "", "[NAME:txtOrdName]");
+            Au3.ControlSetText(windowTitle, "", "[Name:txtOrdName]", "Test A, C:" + formattedDate);
 
         }
 
         public void SetCustomerContact(string windowTitle)
         {
-            au3.ControlClick(windowTitle, "", "[NAME:btnContactLookUp]");
-            au3.WinWaitActive("Customer Contact Info");
-            au3.Sleep(1000);
-            au3.ControlClick("Customer Contact Info", "", "[NAME:btnExitNoSelect]");
+            Au3.ControlClick(windowTitle, "", "[NAME:btnContactLookUp]");
+            Au3.WinWaitActive("Customer Contact Info");
+            Au3.Sleep(1000);
+            Au3.ControlClick("Customer Contact Info", "", "[NAME:btnExitNoSelect]");
         }
 
         public void SetCatSchedType(string category, string scheduleType, string windowTitle)
         {
-            au3.WinWaitActive(windowTitle);
-            au3.ControlClick(windowTitle, "", "[NAME:cboCategory]");
-            au3.Send(category);
-            au3.Send("{TAB}");
-            au3.Send(scheduleType);
-            au3.Send("{TAB}");
+            Au3.WinWaitActive(windowTitle);
+            Au3.ControlClick(windowTitle, "", "[NAME:cboCategory]");
+            Au3.Send(category);
+            Au3.Send("{TAB}");
+            Au3.Send(scheduleType);
+            Au3.Send("{TAB}");
         }
 
         public void SetPrimerAndSave(string windowTitle)
         {
             DateTime currentDate = DateTime.Now;
             string formattedDate = currentDate.ToShortDateString();
-            au3.ControlSetText(windowTitle, "", "[NAME:txtOERecDate]", formattedDate);
-            au3.Send("{TAB 2}");
-            au3.Sleep(500);
-            au3.Send("R{TAB}");
-            au3.Sleep(500);
-            au3.Send("R");
-            au3.ControlClick(windowTitle, "", "[NAME:cmdSave]");
-            au3.Sleep(1000);
+            Au3.ControlSetText(windowTitle, "", "[NAME:txtOERecDate]", formattedDate);
+            Au3.Send("{TAB 2}");
+            Au3.Sleep(500);
+            Au3.Send("R{TAB}");
+            Au3.Sleep(500);
+            Au3.Send("R");
+            Au3.ControlClick(windowTitle, "", "[NAME:cmdSave]");
+            Au3.Sleep(1000);
         }
 
         public void DismissNewOrderNumberPopUp(string windowTitle)
@@ -168,31 +168,31 @@ namespace AutoIT_Scripts
             string PopUpWindowTitle = "New Order Number";
             string PopUpWindowText = "No Delivery Schedule";
 
-            if (au3.WinExists(PopUpWindowTitle, PopUpWindowText) == 1)
+            if (Au3.WinExists(PopUpWindowTitle, PopUpWindowText) == 1)
             {
-                au3.WinActivate(PopUpWindowTitle, PopUpWindowText);
-                au3.WinWaitActive(PopUpWindowTitle, PopUpWindowText);
-                au3.Sleep(500);
-                au3.Send("{ENTER}");
-                au3.Sleep(500);
+                Au3.WinActivate(PopUpWindowTitle, PopUpWindowText);
+                Au3.WinWaitActive(PopUpWindowTitle, PopUpWindowText);
+                Au3.Sleep(500);
+                Au3.Send("{ENTER}");
+                Au3.Sleep(500);
             }
-            au3.WinWaitActive(windowTitle);
-            au3.WinWaitActive(windowTitle);
+            Au3.WinWaitActive(windowTitle);
+            Au3.WinWaitActive(windowTitle);
         }
 
         public void GoToOrderEntry(string windowTitle, string windowTitle2)
         {
-            au3.Opt("WinTitleMatchMode", 2);
-            au3.Sleep(250);
-            au3.ControlClick(windowTitle, "", "[NAME:btnOrderEntry]");
+            Au3.Opt("WinTitleMatchMode", 2);
+            Au3.Sleep(250);
+            Au3.ControlClick(windowTitle, "", "[NAME:btnOrderEntry]");
 
-            au3.Sleep(500);
-            au3.WinActivate("Order Entry");
-            au3.WinWaitActive("Order Entry");
-            au3.WinActivate(windowTitle2);
-            au3.WinWaitActive(windowTitle2);
-            au3.WinClose(windowTitle);
-            au3.WinActivate("Order Entry");
+            Au3.Sleep(500);
+            Au3.WinActivate("Order Entry");
+            Au3.WinWaitActive("Order Entry");
+            Au3.WinActivate(windowTitle2);
+            Au3.WinWaitActive(windowTitle2);
+            Au3.WinClose(windowTitle);
+            Au3.WinActivate("Order Entry");
         }
 
         public void InputChangeOrderCostWeight(int weight, int dollars)
@@ -201,16 +201,16 @@ namespace AutoIT_Scripts
             {
                 string weightString = weight.ToString();
                 string dollarsString = dollars.ToString();
-                au3.Send(weightString);
-                au3.Sleep(50);
-                au3.Send("{TAB}");
-                au3.Sleep(50);
-                au3.Send(dollarsString);
-                au3.Sleep(50);
-                au3.Send("{ENTER}");
-                au3.Sleep(50);
-                au3.Send("{LEFT}");
-                au3.Sleep(50);
+                Au3.Send(weightString);
+                Au3.Sleep(50);
+                Au3.Send("{TAB}");
+                Au3.Sleep(50);
+                Au3.Send(dollarsString);
+                Au3.Sleep(50);
+                Au3.Send("{ENTER}");
+                Au3.Sleep(50);
+                Au3.Send("{LEFT}");
+                Au3.Sleep(50);
                 weight = weight + 1300;
                 dollars = dollars + 1850;
 
@@ -370,15 +370,15 @@ namespace AutoIT_Scripts
             {
                 string poundsString = pounds.ToString();
                 string dollarsString = dollars.ToString();
-                au3.Send(poundsString);
-                au3.Sleep(50);
-                au3.Send("{TAB}");
-                au3.Sleep(50);
-                au3.Send(dollarsString);
-                au3.Sleep(50);
-                au3.Send("{ENTER}");
-                au3.Sleep(50);
-                au3.Send("{LEFT}");
+                Au3.Send(poundsString);
+                Au3.Sleep(50);
+                Au3.Send("{TAB}");
+                Au3.Sleep(50);
+                Au3.Send(dollarsString);
+                Au3.Sleep(50);
+                Au3.Send("{ENTER}");
+                Au3.Sleep(50);
+                Au3.Send("{LEFT}");
                 pounds = pounds + 1000;
                 dollars = dollars + 1000;
 
@@ -391,19 +391,19 @@ namespace AutoIT_Scripts
             {
                 string tonsString = tons.ToString();
                 string dollarsString = dollars.ToString();
-                au3.Send(tonsString);
-                au3.Sleep(50);
-                au3.Send("{TAB 2}");
-                au3.Sleep(50);
-                au3.Send(tonsString);
-                au3.Sleep(50);
-                au3.Send("{TAB}");
-                au3.Sleep(50);
-                au3.Send(dollarsString);
-                au3.Sleep(50);
-                au3.Send("{DOWN}");
-                au3.Sleep(50);
-                au3.Send("{LEFT 3}");
+                Au3.Send(tonsString);
+                Au3.Sleep(50);
+                Au3.Send("{TAB 2}");
+                Au3.Sleep(50);
+                Au3.Send(tonsString);
+                Au3.Sleep(50);
+                Au3.Send("{TAB}");
+                Au3.Sleep(50);
+                Au3.Send(dollarsString);
+                Au3.Sleep(50);
+                Au3.Send("{DOWN}");
+                Au3.Sleep(50);
+                Au3.Send("{LEFT 3}");
                 tons = tons + 0.5;
                 dollars = dollars + 1000;
 
@@ -455,46 +455,46 @@ namespace AutoIT_Scripts
             {
 
                 case "KBSTN":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "GSMMS":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "CBCCA":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "NBSIN":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "NBSUT":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "NBSSC":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "NBSTX":
-                    au3.Send("Y");
+                    Au3.Send("Y");
                     break;
 
                 case "ABCNV":
-                    au3.Send("A");
+                    Au3.Send("A");
                     break;
 
                 case "ABCAL":
-                    au3.Send("A");
+                    Au3.Send("A");
                     break;
 
                 case "ABCVA":
-                    au3.Send("A");
+                    Au3.Send("A");
                     break;
                 case "ABCIL":
-                    au3.Send("A");
+                    Au3.Send("A");
                     break;
 
                 default: MessageBox.Show("The division has not been detected correctly. You may not be in a test environment.");
@@ -503,14 +503,14 @@ namespace AutoIT_Scripts
         }
         public void SetEndUseCode(string windowTitle)
         {
-            au3.ControlFocus(windowTitle, "", "[NAME:cboEndUse]");
-            au3.Send("2");
+            Au3.ControlFocus(windowTitle, "", "[NAME:cboEndUse]");
+            Au3.Send("2");
         }
 
         public void DisableEmail(string windowTitle)
         {
-            au3.ControlClick(windowTitle, "", "[NAME:chkEmail_JobInfo]");
-            au3.Sleep(250);
+            Au3.ControlClick(windowTitle, "", "[NAME:chkEmail_JobInfo]");
+            Au3.Sleep(250);
         }
     }
 

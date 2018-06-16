@@ -19,6 +19,30 @@ namespace AutoIT_Scripts
             get; set;
         }
 
+        public bool CreateJob
+        {
+            get; set;
+        }
+
+        public bool BookJob
+        {
+            get; set;
+        }
+
+        public bool CreateChangeOrder
+        {
+            get; set;
+        }
+
+        public bool InvoiceJob
+        {
+            get; set;
+        }
+
+        public bool RunDailySalesReport
+        {
+            get; set;
+        }
         
     }
 }
