@@ -18,7 +18,9 @@ namespace AutoIT_Scripts
         public void CheckIfWindowExists(string windowTitle)
         {
             if (au3.WinExists(windowTitle, "") == 0)
+            {
                 MessageBox.Show("Please open the " + windowTitle + " screen and try to run this script again.");
+            }
         }
 
         public void ClickNewJobButton(string windowTitle, string windowTitle2)

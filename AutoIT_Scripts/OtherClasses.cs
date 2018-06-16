@@ -44,8 +44,8 @@ namespace AutoIT_Scripts
             au3Class.CheckIfWindowExists(windowTitle);
 
             string currentJobName = Au3.ControlGetText(windowTitle, "", "[NAME:txtOrderName]");
-                       
-
+                      
+            
             au3Class.InputProjectInfo(windowTitle, currentJobName,numberOfPhases);
         }
 

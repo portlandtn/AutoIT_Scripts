@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.rboJobTypeA = new System.Windows.Forms.RadioButton();
-            this.rboJobTypeB = new System.Windows.Forms.RadioButton();
-            this.rboJobTypeC = new System.Windows.Forms.RadioButton();
-            this.rboJobTypeD = new System.Windows.Forms.RadioButton();
-            this.pnlJobTypes = new System.Windows.Forms.Panel();
             this.pnlNumberofPhases = new System.Windows.Forms.Panel();
             this.rboOnePhase = new System.Windows.Forms.RadioButton();
             this.rboTwoPhases = new System.Windows.Forms.RadioButton();
@@ -50,67 +45,10 @@
             this.lblTestOrProdState = new System.Windows.Forms.Label();
             this.lblAutoITTesting = new System.Windows.Forms.Label();
             this.tmrCheckDivision = new System.Windows.Forms.Timer(this.components);
-            this.pnlJobTypes.SuspendLayout();
+            this.cboJobTypeComboBox = new System.Windows.Forms.ComboBox();
             this.pnlNumberofPhases.SuspendLayout();
             this.pnlCreateJobOptions.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // rboJobTypeA
-            // 
-            this.rboJobTypeA.AutoSize = true;
-            this.rboJobTypeA.Checked = true;
-            this.rboJobTypeA.Location = new System.Drawing.Point(3, 3);
-            this.rboJobTypeA.Name = "rboJobTypeA";
-            this.rboJobTypeA.Size = new System.Drawing.Size(79, 17);
-            this.rboJobTypeA.TabIndex = 1;
-            this.rboJobTypeA.TabStop = true;
-            this.rboJobTypeA.Text = "Job Type A";
-            this.rboJobTypeA.UseVisualStyleBackColor = true;
-            this.rboJobTypeA.CheckedChanged += new System.EventHandler(this.rboJobTypeA_CheckedChanged);
-            // 
-            // rboJobTypeB
-            // 
-            this.rboJobTypeB.AutoSize = true;
-            this.rboJobTypeB.Location = new System.Drawing.Point(3, 26);
-            this.rboJobTypeB.Name = "rboJobTypeB";
-            this.rboJobTypeB.Size = new System.Drawing.Size(79, 17);
-            this.rboJobTypeB.TabIndex = 2;
-            this.rboJobTypeB.Text = "Job Type B";
-            this.rboJobTypeB.UseVisualStyleBackColor = true;
-            this.rboJobTypeB.CheckedChanged += new System.EventHandler(this.rboJobTypeB_CheckedChanged);
-            // 
-            // rboJobTypeC
-            // 
-            this.rboJobTypeC.AutoSize = true;
-            this.rboJobTypeC.Location = new System.Drawing.Point(3, 49);
-            this.rboJobTypeC.Name = "rboJobTypeC";
-            this.rboJobTypeC.Size = new System.Drawing.Size(79, 17);
-            this.rboJobTypeC.TabIndex = 3;
-            this.rboJobTypeC.Text = "Job Type C";
-            this.rboJobTypeC.UseVisualStyleBackColor = true;
-            this.rboJobTypeC.CheckedChanged += new System.EventHandler(this.rboJobTypeC_CheckedChanged);
-            // 
-            // rboJobTypeD
-            // 
-            this.rboJobTypeD.AutoSize = true;
-            this.rboJobTypeD.Location = new System.Drawing.Point(3, 72);
-            this.rboJobTypeD.Name = "rboJobTypeD";
-            this.rboJobTypeD.Size = new System.Drawing.Size(80, 17);
-            this.rboJobTypeD.TabIndex = 4;
-            this.rboJobTypeD.Text = "Job Type D";
-            this.rboJobTypeD.UseVisualStyleBackColor = true;
-            this.rboJobTypeD.CheckedChanged += new System.EventHandler(this.rboJobTypeD_CheckedChanged);
-            // 
-            // pnlJobTypes
-            // 
-            this.pnlJobTypes.Controls.Add(this.rboJobTypeA);
-            this.pnlJobTypes.Controls.Add(this.rboJobTypeD);
-            this.pnlJobTypes.Controls.Add(this.rboJobTypeB);
-            this.pnlJobTypes.Controls.Add(this.rboJobTypeC);
-            this.pnlJobTypes.Location = new System.Drawing.Point(12, 77);
-            this.pnlJobTypes.Name = "pnlJobTypes";
-            this.pnlJobTypes.Size = new System.Drawing.Size(130, 100);
-            this.pnlJobTypes.TabIndex = 5;
             // 
             // pnlNumberofPhases
             // 
@@ -285,12 +223,22 @@
             this.tmrCheckDivision.Enabled = true;
             this.tmrCheckDivision.Tick += new System.EventHandler(this.wait_Tick);
             // 
+            // cboJobTypeComboBox
+            // 
+            this.cboJobTypeComboBox.FormattingEnabled = true;
+            this.cboJobTypeComboBox.Location = new System.Drawing.Point(13, 77);
+            this.cboJobTypeComboBox.Name = "cboJobTypeComboBox";
+            this.cboJobTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.cboJobTypeComboBox.TabIndex = 19;
+            this.cboJobTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.cboJobTypeComboBox_SelectedIndexChanged);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(619, 270);
+            this.Controls.Add(this.cboJobTypeComboBox);
             this.Controls.Add(this.lblAutoITTesting);
             this.Controls.Add(this.lblTestOrProdState);
             this.Controls.Add(this.lblCurrentDivision);
@@ -299,12 +247,9 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.pnlCreateJobOptions);
             this.Controls.Add(this.pnlNumberofPhases);
-            this.Controls.Add(this.pnlJobTypes);
             this.Name = "frmHome";
             this.Text = "Home";
             this.Load += new System.EventHandler(this.frmHome_Load);
-            this.pnlJobTypes.ResumeLayout(false);
-            this.pnlJobTypes.PerformLayout();
             this.pnlNumberofPhases.ResumeLayout(false);
             this.pnlNumberofPhases.PerformLayout();
             this.pnlCreateJobOptions.ResumeLayout(false);
@@ -315,12 +260,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RadioButton rboJobTypeA;
-        private System.Windows.Forms.RadioButton rboJobTypeB;
-        private System.Windows.Forms.RadioButton rboJobTypeC;
-        private System.Windows.Forms.RadioButton rboJobTypeD;
-        private System.Windows.Forms.Panel pnlJobTypes;
         private System.Windows.Forms.Panel pnlNumberofPhases;
         private System.Windows.Forms.RadioButton rboOnePhase;
         private System.Windows.Forms.RadioButton rboTwoPhases;
@@ -337,6 +276,7 @@
         private System.Windows.Forms.Label lblTestOrProdState;
         private System.Windows.Forms.Label lblAutoITTesting;
         private System.Windows.Forms.Timer tmrCheckDivision;
+        private System.Windows.Forms.ComboBox cboJobTypeComboBox;
     }
 }
 

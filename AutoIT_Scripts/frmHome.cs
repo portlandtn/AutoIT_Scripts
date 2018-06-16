@@ -13,8 +13,9 @@ namespace AutoIT_Scripts
     public partial class frmHome : Form
     {
 
-        AutoIT Au3 = new AutoIT();
-        OtherClasses OClasses = new OtherClasses();
+        AutoIT _Au3 = new AutoIT();
+        OtherClasses _OClasses = new OtherClasses();
+        Settings _RunSettings = new Settings();
 
 
         public frmHome()
@@ -24,72 +25,28 @@ namespace AutoIT_Scripts
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            string jobType;
-            if (rboJobTypeA.Checked == true)
-            {
-                jobType = "A";
-            }
-            else if (rboJobTypeB.Checked == true)
-            {
-                jobType = "B";
-            }
-
-            else if (rboJobTypeC.Checked == true)
-            {
-                jobType = "C";
-            }
-
-            else if (rboJobTypeD.Checked == true)
-            {
-                jobType = "D";
-            }
-
-            else
-            {
-                MessageBox.Show("Something went wrong!");
-            }
-
-            int numberOfPhases = 1;
-
-            if (rboOnePhase.Checked == true)
-            {
-                numberOfPhases = 1;
-            }
-
-            else if(rboTwoPhases.Checked == true)
-            {
-                numberOfPhases = 2;
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong!");
-            }
-
-            if (chkBookJob.Checked == true)
-            {
-                
-            }
-
-            OClasses.BookJob(numberOfPhases);
-
-
-            //var checkedButton = pnlJobTypes.Controls.OfType<RadioButton>()
-            //    .FirstOrDefault(r => r.Checked);
-
-
-
+            
 
 
         }
 
         private void frmHome_Load(object sender, EventArgs e)
         {
+
+            cboJobTypeComboBox.Items.Add(new KeyValuePair<string, string>("A", "Job Type A"));
+            cboJobTypeComboBox.Items.Add(new KeyValuePair<string, string>("B", "Job Type B"));
+            cboJobTypeComboBox.Items.Add(new KeyValuePair<string, string>("C", "Job Type C"));
+            cboJobTypeComboBox.Items.Add(new KeyValuePair<string, string>("D", "Job Type D"));
+
             
+
+            cboJobTypeComboBox.DisplayMember = "Value";
+            cboJobTypeComboBox.ValueMember = "Key";
         }
 
         private void wait_Tick(object ender, EventArgs e)
         {
-            string division = Au3.GetDivision();
+            string division = _Au3.GetDivision();
 
             if (division == null)
             {
@@ -166,6 +123,13 @@ namespace AutoIT_Scripts
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void cboJobTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selection = (KeyValuePair<string,string>)(cboJobTypeComboBox.SelectedItem);
+            _RunSettings.JobType = selection.Key;
+            
         }
     }
 }
