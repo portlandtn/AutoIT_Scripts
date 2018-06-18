@@ -32,6 +32,11 @@ namespace AutoIT_Scripts
                 _OClasses.BookJob(_RunSettings.NumberOfPhases);
             }
 
+            if (CheckBox_CreateJob.Checked)
+            {
+                _OClasses.CreateJob();
+            }
+
             
         }
 

@@ -38,7 +38,7 @@ namespace AutoIT_Scripts
 
 
             string currentJobName = _Au3Lib.ControlGetText(windowTitle, "", "[NAME:txtOrderName]");
-            _Au3.InputProjectInfo(windowTitle, currentJobName, _RunSettings.NumberOfPhases);
+            _Au3.InputProjectInfo(windowTitle, currentJobName);
 
             _Au3Lib.ControlFocus(windowTitle, "", "[NAME:cboPriceType]");
             string division = _Au3.GetDivision();
@@ -133,6 +133,69 @@ namespace AutoIT_Scripts
 
         }
 
+        public void CreateJob()
+        {
+            _Au3Lib.Opt("WinTitleMatchMode", 2);
+
+            //Checks if the Order Log is open
+            string windowTitle = "Order Log";
+            _Au3.CheckIfWindowExists(windowTitle);
+
+            string windowNewOrderNumber = "New Order Number";
+            _Au3.ClickNewJobButton("Order Log",windowNewOrderNumber);
+
+            //Determines customer number based on division
+            _Au3Lib.ControlSetText(windowNewOrderNumber, "", "[NAME:txtCustNbr]", _Au3.GetCustomerNumber());
+            _Au3Lib.Send("{TAB}");
+            _Au3.DetermineControlVisibility("[NAME:lblCustName]", windowNewOrderNumber);
+
+            //Sets the job name based on chosen job type
+            DateTime currentDate = DateTime.Now;
+            //string format = "m/d/yy";
+            string formattedDate = currentDate.ToShortDateString();
+            _Au3Lib.ControlClick(windowNewOrderNumber, "", "[NAME:txtOrdName]");
+
+            ///////MUST GET WITH RALPH ON HOW TO GET THIS TO READ COMBO BOX//////////
+
+            //switch (ComboBox_jobType)
+            //{
+
+            //    default:
+
+            //}
+
+            string jobType = "A";
+
+            _Au3Lib.ControlSetText(windowNewOrderNumber, "", "[Name:txtOrdName]", "Test " + jobType + ",C:" + formattedDate);
+            _Au3.SetCustomerContact(windowNewOrderNumber);
+
+            //Call("Visibility", "[NAME:lblCustName]",$WindowTitle)
+
+            //; Set Job Name and sets blank customer contact
+            //$CurrentDate = _NowDate()
+            //ControlClick($WindowTitle, "", "[NAME:txtOrdName]")
+            //ControlSetText($WindowTitle, "", "[Name:txtOrdName]", "Test A, C:" & $CurrentDate)
+            //Call("CustomerContact",$WindowTitle)
+
+            //Sets category and Order type based on jobType chosen in ComboBox
+            string category = "1";
+            string scheduleType = "O"; // sets to OSD
+            _Au3.SetCatSchedType(category, scheduleType, windowNewOrderNumber);
+
+            //Sets Order Entry date, primer to red, and saves the job
+            _Au3.SetPrimerAndSave(windowNewOrderNumber);
+
+            //If a pop-up shows up, warning there is no delivery schedule information, this dismisses it.
+            _Au3.DismissNewOrderNumberPopUp(windowNewOrderNumber);
+            _Au3.DetermineControlVisibility("[NAME:btnOrderEntry]", windowNewOrderNumber);
+
+            _Au3.GoToOrderEntry(windowNewOrderNumber, "Order Log");
+
+            _Au3.DetermineControlVisibility("[NAME:btnNewJob]", "Order Log");
+            _Au3Lib.WinClose(windowNewOrderNumber);
+
+
+        }
 
 
     }
