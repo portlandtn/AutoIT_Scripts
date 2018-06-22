@@ -27,17 +27,18 @@ namespace AutoIT_Scripts
 
         private void Button_Submit_Click(object sender, EventArgs e)
         {
-            if (CheckBox_BookJob.Checked)
-            {
-                _OClasses.BookJob(_RunSettings.NumberOfPhases);
-            }
 
             if (CheckBox_CreateJob.Checked)
             {
                 _OClasses.CreateJob();
             }
 
-            
+            if (CheckBox_BookJob.Checked)
+            {
+                _OClasses.BookJob(1);
+               // _OClasses.BookJob(_RunSettings.NumberOfPhases);
+            }
+
         }
 
         private void FormHome_Load(object sender, EventArgs e)

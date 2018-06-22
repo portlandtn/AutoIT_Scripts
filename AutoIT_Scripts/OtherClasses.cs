@@ -38,7 +38,7 @@ namespace AutoIT_Scripts
 
 
             string currentJobName = _Au3Lib.ControlGetText(windowTitle, "", "[NAME:txtOrderName]");
-            _Au3.InputProjectInfo(windowTitle, currentJobName);
+            _Au3.InputProjectInfo(windowTitle, currentJobName,numberOfPhases);
 
             _Au3Lib.ControlFocus(windowTitle, "", "[NAME:cboPriceType]");
             string division = _Au3.GetDivision();
@@ -59,9 +59,11 @@ namespace AutoIT_Scripts
             _Au3Lib.ControlClick(windowTitle, "", "[NAME:btnSaveBldgInfo]");
             _Au3.DetermineControlVisibility("[NAME:picboxHappy_BldgInfo]", windowTitle);
             _Au3Lib.ControlClick(windowTitle, "", "[NAME:btnPrebookFromBldg]");
+
             _Au3.DetermineControlVisibility("[NAME:btnSaveMultiPhasesToDB]", windowTitle);
             _Au3.DisableEmail(windowTitle);
             _Au3Lib.ControlClick(windowTitle, "", "[NAME:btnSaveMultiPhasesToDB]");
+            _Au3Lib.Sleep(1000);
 
             //transfer $$ and ## to Phases
             _Au3Lib.ControlClick(windowTitle, "", "[NAME:ProjectFeaturesTab]", "left", 116, 12);
@@ -70,12 +72,12 @@ namespace AutoIT_Scripts
             _Au3Lib.ControlClick(windowTitle, "", "[NAME:FpPhaseTool]", "left", 1, 34, 27);
 
 
-            if (_RunSettings.NumberOfPhases == 1)
+            if (numberOfPhases == 1)
             {
                 _Au3Lib.Send("A{TAB}1{TAB}100{ENTER}");
                 _Au3Lib.Sleep(250);
             }
-            else if (_RunSettings.NumberOfPhases == 2)
+            else if (numberOfPhases == 2)
             {
                 _Au3Lib.Send("A{TAB}1{TAB}70{ENTER}");
                 _Au3Lib.Sleep(250);
@@ -100,7 +102,7 @@ namespace AutoIT_Scripts
   
             //$Coords = StringSplit(Call("GetCoords",$Division), ",")
 
-            _Au3Lib.ControlClick(windowTitle, "", "[NAME:FpSpreadProjDates]", "LEFT", 1, coordinates[0], coordinates[1]);
+            _Au3Lib.ControlClick(windowTitle, "", "[NAME:FpSpreadProjDates]", "LEFT", 1, 304,366);
 
             DateTime currentDate = DateTime.Now;
             //string format = "m/d/yy";

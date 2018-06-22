@@ -5,17 +5,25 @@ using System.Windows.Forms;
 
 namespace AutoIT_Scripts
 {
-    class AutoIT
+    public class AutoIT
     {
         AutoItX3 _Au3Lib = new AutoItX3();
         Settings _RunSettings = new Settings();
 
-        public void CheckIfWindowExists(string windowTitle)
+        public bool CheckIfWindowExists(string windowTitle)
         {
+            bool result;
             if (_Au3Lib.WinExists(windowTitle, "") == 0)
             {
-                MessageBox.Show("Please open the " + windowTitle + " screen and try to run this script again.");
+                result = false;
+                MessageBox.Show(String.Format("Please open the {0} screen and try to run this script again.", windowTitle));
             }
+            else
+            {
+                result = true;
+            }
+
+            return result;
         }
 
         public void ClickNewJobButton(string windowNewOrderEntry, string windowOrderLog)
@@ -27,10 +35,10 @@ namespace AutoIT_Scripts
             _Au3Lib.Sleep(250);
         }
 
-        public void CustomerNumber(string windowTitle, string customerNumber)
+        public void CustomerNumber(string windowNewOrderEntry, string customerNumber)
         {
-            _Au3Lib.ControlClick(windowTitle, "", "[NAME:txtCustNbr]");
-            _Au3Lib.ControlSetText(windowTitle, "", "[NAME:txtCustNbr]", customerNumber);
+            _Au3Lib.ControlClick(windowNewOrderEntry, "", "[NAME:txtCustNbr]");
+            _Au3Lib.ControlSetText(windowNewOrderEntry, "", "[NAME:txtCustNbr]", customerNumber);
             _Au3Lib.Send("{TAB}");
         }
 
@@ -98,13 +106,13 @@ namespace AutoIT_Scripts
             }
         }
 
-        public void InputProjectInfo(string windowTitle, string currentJobName)
+        public void InputProjectInfo(string windowTitle, string currentJobName, int numberOfPhases)
         {
             DateTime currentDate = DateTime.Now;
             //string format = "m/d/yy";
             string formattedDate = currentDate.ToShortDateString();
 
-            _Au3Lib.ControlSetText(windowTitle, "", "[NAME:txtOrderName]", currentJobName + ", " + _RunSettings.NumberOfPhases + "Ph, " + formattedDate);
+            _Au3Lib.ControlSetText(windowTitle, "", "[NAME:txtOrderName]", currentJobName + ", " + numberOfPhases + "Ph, " + formattedDate);
             _Au3Lib.ControlSetText(windowTitle, "", "[NAME:txtShipAddr1]", "1111 Generic Address");
             _Au3Lib.ControlSetText(windowTitle, "", "[NAME:cboShipCity]", "Nashville");
             _Au3Lib.ControlSetText(windowTitle, "", "[NAME:txtShipState]", "TN");
@@ -414,7 +422,7 @@ namespace AutoIT_Scripts
             switch (division)
             {
                 case "NBSUT":
-                    return "286, 367";
+                    return "286,367";
 
                 case "NBSTX":
                     return "298,385";
